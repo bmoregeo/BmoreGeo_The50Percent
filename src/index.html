@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>The 50 Percent</title>
+    <link rel="stylesheet" type="text/css" href="js/leaflet/leaflet.css" />
+    <link rel="stylesheet" href="css/style.css" />
+
+    <script type="text/html" id="header-template">
+        <h1  data-bind="text: title"></h1>
+        <div id="search">
+            <label for="map_search">Find your County</label>
+            <input type="text" id="map_search"
+               data-bind="value:map_search, valueUpdate: 'afterkeydown'"> </input>
+        </div>
+    </script>
+
+    <script type="text/html" id="options-template">
+        <header><h2>Options</h2></header>
+        <div class="wrap">
+            test  ing
+        </div>
+    </script>
+</head>
+
+<body>
+    <header id="main" data-bind="template: { name: 'header-template', data: header }"></header>
+    <div id="map"><div id="mapview"></div></div>
+    <div id="options" data-bind="template: { name: 'options-template', data: options }"></div>
+</body>
+
+<script type="text/javascript" data-main="js/init.js" src="js/lib/require.js"></script>
+
+</html>

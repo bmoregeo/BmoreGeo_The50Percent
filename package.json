@@ -1,0 +1,25 @@
+{
+  "name": "the50percent",
+  "version": "0.1.0",
+  "devDependencies": {
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-requirejs": "~0.4.1",
+    "grunt": "~0.4.2",
+    "grunt-text-replace": "~0.3.11",
+    "grunt-contrib-copy": "~0.4.1",
+    "grunt-contrib-less": "~0.5.2",
+    "grunt-contrib-watch": "~0.4.4",
+    "grunt-cli": "~0.1.13"
+  },
+  "main": "Gruntfile.js",
+  "dependencies": {
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-requirejs": "~0.4.1",
+    "grunt": "~0.4.2",
+    "grunt-text-replace": "~0.3.10",
+    "grunt-contrib-copy": "~0.4.1",
+    "grunt-contrib-less": "~0.5.0",
+    "grunt-contrib-watch": "~0.4.0"
+  },
+  "author": "Christpher Fricke"
+}
