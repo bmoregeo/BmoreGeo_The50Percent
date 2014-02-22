@@ -11,7 +11,9 @@ define(['knockout', 'app/config', 'jquery', 'app/model/map'], function(ko, confi
         var self = this;
 
         self.init = function () {
-            console.log('init mapvm');
+            map.mapInstance.setView(config.map.initialCenter,
+                                    config.map.initialZoom);
+            map.basemap(config.map.baseMap.url, config.map.baseMap.attribution);
         }
     };
     return mapVM;

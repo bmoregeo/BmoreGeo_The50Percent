@@ -10,8 +10,12 @@ define([], function() {
         "title": "The 50 Percent",
         "default_search": "New York",
         "map": {
-            "initialCenter":[0, 0],   // X,Y
-            "initialZoom": 5            // 1 (small) - 18 (big)
+            "initialCenter":[40, -77],     // Y,X
+            "initialZoom": 5,           // 1 (small) - 18 (big),
+            "baseMap":{
+                "url": "https://a.tiles.mapbox.com/v3/mapbox.world-print/{z}/{x}/{y}.png",
+                "attribution": "Map data © OpenStreetMap contributors"
+            }
         }
     }
 });

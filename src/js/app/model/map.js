@@ -9,7 +9,7 @@
 (function () {
 
     "use strict";
-    define(['Leaflet', 'app/config'], function(L, config) {
+    define(['leaflet', 'app/config'], function(L, config) {
         var instance = null;
 
         function MapModel() {
@@ -17,12 +17,8 @@
             if (instance !== null) {
                 throw new Error("Cannot instantiate more than one MapModel, use MapModel.getInstance()");
             }
-
             this.mapInstance = null;
-            this.mapLayers = [];
             this.initialize();
-
-
         }
 
         MapModel.prototype = {
@@ -30,22 +26,23 @@
                 this.createMap();
             },
             createMap: function() {
-
-                this.mapInstance = L.map('mapview').setView(config.map.initialCenter,
-                                                            config.map.initialZoom);
-
-
+                // Create a leaflet map on mapview object!
+                this.mapInstance = L.map('mapview');
+            },
+            basemap: function(basemap_url, basemap_attribution){
                 // Create a layer of open streetmap tile layer
-                var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
-                var osmAttrib='Map data © OpenStreetMap contributors';
+                var osmUrl= basemap_url;
+                var osmAttrib= basemap_attribution;
                 var osm = new L.TileLayer(osmUrl, {minZoom: 2,
-                                                   maxZoom: 21,
-                                                   attribution: osmAttrib});
-                // add tiles to the map
-                this.mapInstance.addLayer(osm);
+                    maxZoom: 21,
+                    attribution: osmAttrib});
+                this.addLayer(osm)
+            },
 
-                console.log('Map Created');
+            addLayer: function(layer){
+                this.mapInstance.addLayer(layer);
             }
+
 
         };
 

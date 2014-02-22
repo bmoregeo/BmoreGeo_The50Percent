@@ -11,10 +11,10 @@ requirejs.config({
         "app": "../app",
         "jquery": "jquery-2.0.3.min",
         "knockout":"knockout-2.3.0",
-        "Leaflet": "leaflet/leaflet"
+        "leaflet": "leaflet/leaflet"
     },
     shim: {
-        "Leaflet": {exports: "L"}
+        "leaflet": {exports: "L"}
     }
 });
 

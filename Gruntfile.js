@@ -26,7 +26,8 @@ module.exports = function (grunt) {
                     paths:{
                         'jquery': 'lib/jquery-2.0.3.min',
                         'knockout': 'lib/knockout-2.3.0',
-                        'Leaflet': 'lib/leaflet/leaflet',
+                        'leaflet': 'lib/leaflet/leaflet',
+                        'mapbox': 'lib/mapbox/mapbox',
                         'text':'../../deps/text/text',
                         'domReady':'../../deps/domReady/domReady'
                         //'globals': 'empty:'
