@@ -29,21 +29,16 @@
                 // Create a leaflet map on mapview object!
                 this.mapInstance = L.map('mapview');
             },
-            basemap: function(basemap_url, basemap_attribution){
+            addLayer: function(layerInfo){
                 // Create a layer of open streetmap tile layer
-                var osmUrl= basemap_url;
-                var osmAttrib= basemap_attribution;
-                var osm = new L.TileLayer(osmUrl, {minZoom: 2,
-                    maxZoom: 21,
-                    attribution: osmAttrib});
-                this.addLayer(osm)
-            },
+                var layerFunction = function(type){
+                     return type === 'tile'   ?  L.TileLayer :
+                         L.VectorLayer;
+                }(layerInfo.type);
 
-            addLayer: function(layer){
-                this.mapInstance.addLayer(layer);
+                var mapLayer = new layerFunction(layerInfo.url, layerInfo.settings);
+                this.mapInstance.addLayer(mapLayer)
             }
-
-
         };
 
         MapModel.getInstance = function () {

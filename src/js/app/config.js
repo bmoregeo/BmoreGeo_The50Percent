@@ -14,7 +14,12 @@ define([], function() {
             "initialZoom": 5,           // 1 (small) - 18 (big),
             "baseMap":{
                 "url": "https://a.tiles.mapbox.com/v3/mapbox.world-print/{z}/{x}/{y}.png",
-                "attribution": "Map data © OpenStreetMap contributors"
+                "settings": {
+                    "attribution": "Map data © OpenStreetMap contributors",
+                    "minZoom": 2,
+                    "maxZoom": 21
+                },
+                "type": "tile"
             }
         }
     }

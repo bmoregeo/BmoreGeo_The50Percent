@@ -13,7 +13,7 @@ define(['knockout', 'app/config', 'jquery', 'app/model/map'], function(ko, confi
         self.init = function () {
             map.mapInstance.setView(config.map.initialCenter,
                                     config.map.initialZoom);
-            map.basemap(config.map.baseMap.url, config.map.baseMap.attribution);
+            map.addLayer(config.map.baseMap);
         }
     };
     return mapVM;
