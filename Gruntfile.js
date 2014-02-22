@@ -58,24 +58,15 @@ module.exports = function (grunt) {
             // needed for inlined templated in single-file build
             "main":{
                 src:['build/js/main.js'],
-                dest:'build/js/main.js',
+                dest:'/Users/christopherfricke/Sites/The50Percent/js/main.js',
                 replacements:[
                     {
                         from:'text!',
                         to:''
                     }
                 ]
-            },
-            "proxy":{
-                src:['build/proxy/proxy.config'],
-                dest:'build/proxy/proxy.config',
-                replacements:[
-                    {
-                        from:"oneviewGrunt/src",
-                        to:"oneviewGrunt/build"
-                    }
-                ]
             }
+
         },
 
         // needed for single file build
@@ -87,14 +78,14 @@ module.exports = function (grunt) {
             // needed for single file build
             single:{
                 files:[
-                    {expand:true, cwd:'src', src:['**', ['!js/main.js', '!less/**']], dest:'build/'}
+                    {expand:true, cwd:'src', src:['**', ['!js/main.js', '!less/**']], dest:'/Users/christopherfricke/Sites/The50Percent/'}
                 ]
             }
         }
     });
 
     grunt.registerTask("compile", ["requirejs:compile"]);
-    grunt.registerTask("lesscompile", ["less"])
-    grunt.registerTask("single", ["clean", "requirejs:single", "less", "replace", "copy"]);
+    grunt.registerTask("lesscompile", ["less"]);
+    grunt.registerTask("all", ["clean", "requirejs:single", "less", "replace", "copy"]);
 
 };
