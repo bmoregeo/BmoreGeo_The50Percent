@@ -32,8 +32,10 @@
             addLayer: function(layerInfo){
                 // Create a layer of open streetmap tile layer
                 var layerFunction = function(type){
-                     return type === 'tile'   ?  L.TileLayer :
-                         L.VectorLayer;
+                     return type === 'tile' ?  L.TileLayer :
+                         type === 'wms' ? L.TileLayer.WMS :
+                         type === 'canvas' ? L.TileLayer.Canvas :
+                         L.geoJson;
                 }(layerInfo.type);
 
                 var mapLayer = new layerFunction(layerInfo.url, layerInfo.settings);
