@@ -11,6 +11,7 @@ define(['knockout', 'app/config', 'jquery', 'app/model/map'], function(ko, confi
         var self = this;
 
         self._basemap = ko.observable();
+        self._operationalLayers = ko.observableArray();
         self._center = ko.observable();
         self._zoom = ko.observable();
 
@@ -47,13 +48,25 @@ define(['knockout', 'app/config', 'jquery', 'app/model/map'], function(ko, confi
             owner: self
         });
 
+        self.operationalLayers = ko.computed({
+            read: function () {
+                return self._operationalLayers;
+            },
+            write: function (value) {
+                self._operationalLayers = value;
+                /*map.mapInstance.setZoom(zoom);*/
+            },
+            owner: self
+            /* TODO: Figure out way to extend this computed observable with an append and delete item function */
+        });
+
 
 
         self.init = function () {
             map.mapInstance.setView(config.map.initialCenter,
                                     config.map.initialZoom);
 
-
+            self.basemap(config.map.basemap);
             /*
               Add Operational Layers
             */
