@@ -21,14 +21,5 @@ define(["jquery", "knockout", "app/vm/headerVM", "app/vm/legendVM", "app/vm/mapV
             legend.legendItems.push({className:"example 3", classColor:'#0000FF'});
 
 
-            $.ajax({
-                url: config.map.operationalLayers[0].url,
-                success: function (data){
-                    var settings = config.map.operationalLayers[0];
-                    settings.data = data
-                    map.addLayer(settings);
-                },
-                fail: function (jqXHR, textStatus, errorThrown){console.log(textStatus);}
-            });
         });
     });

@@ -40,8 +40,9 @@ define([], function() {
                             layer.bindPopup(feature.properties.name);
                         }
                     },
-                    url:"http://localhost/~christopherfricke/The50Percent/js/data/states.json",
-                    type:"geojson"
+                    url: "http://localhost/~christopherfricke/The50Percent/js/data/states.json",
+                    type: "geojson",
+                    id: "states_geojson"
                 }
             ]
         },
