@@ -48,23 +48,43 @@ header{
     width:100%;
   }
 }
-#options{
+#legend{
   position:fixed;
   bottom:10px;
   left:10px;
   width:20%;
-  height:40%;
   background: @options_background;
   color:@options_color;
   border: 1px solid @options_color;
   .rounded(5px);
+  font-family: helvetica, arial, sans-serif;
+
 
   .wrap{
     padding:10px;
+
+    .legendItem{
+      height:25px;
+
+      .legendItemText{
+        float:right;
+        width:160px;
+        font-size:12px;
+        padding:5px 0 3px 0;
+      }
+
+      .legendItemSymbol{
+        width:20px;
+        height:20px;
+        border:1px solid #FFFFFF;
+        float:left;
+      }
+    }
   }
-  h2{
+  h1{
     font-size:16px;
     margin:0;
     padding:10px;
   }
+
 }

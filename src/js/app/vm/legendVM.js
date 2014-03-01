@@ -9,5 +9,7 @@
 define(['knockout', 'app/config', 'jquery'], function(ko, config, $) {
     return function options() {
         var self = this;
+        self.title = ko.observable(config.legend.title);
+        self.legendItems = ko.observableArray();
     }
 })

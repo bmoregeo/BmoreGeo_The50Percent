@@ -10,5 +10,6 @@ define(['knockout', 'app/config', 'jquery'], function(ko, config, $) {
         var self = this
         this.title = ko.observable(config.title)
         this.map_search = ko.observable(config.default_search)
+        this.template = ko.observable("header")
     }
 })
