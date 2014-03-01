@@ -9,7 +9,7 @@
 (function () {
 
     "use strict";
-    define(['leaflet', 'app/config'], function(L, config) {
+    define(['jquery', 'leaflet', 'app/config'], function($, L, config) {
         var instance = null;
 
         function MapModel() {
@@ -28,18 +28,20 @@
             createMap: function() {
                 // Create a leaflet map on mapview object!
                 this.mapInstance = L.map('mapview');
+
             },
-            addLayer: function(layerInfo){
+            addLayer: function(layerInfo) {
                 // Create a layer of open streetmap tile layer
                 var layerFunction = function(type){
                      return type === 'tile' ?  L.TileLayer :
                          type === 'wms' ? L.TileLayer.WMS :
                          type === 'canvas' ? L.TileLayer.Canvas :
-                         L.geoJson;
+                             L.geoJson;
+
                 }(layerInfo.type);
 
-                var mapLayer = new layerFunction(layerInfo.url, layerInfo.settings);
-                this.mapInstance.addLayer(mapLayer)
+                var mapLayer = new layerFunction(layerInfo.data, layerInfo.settings);
+                this.mapInstance.addLayer(mapLayer);
             }
         };
 

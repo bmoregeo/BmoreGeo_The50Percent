@@ -12,12 +12,8 @@ module.exports = function (grunt) {
                 files:["src/js/**/*", "src/less/**/*.less", "src/config.js", "src/index.html"],
                 tasks:['single']
             }
-
         },
         requirejs:{
-            // configuration for a multi-file build
-
-            // configuration for a single-file build
             single:{
                 options:{
                     baseUrl:'src/js',
@@ -30,7 +26,6 @@ module.exports = function (grunt) {
                         'mapbox': 'lib/mapbox/mapbox',
                         'text':'../../deps/text/text',
                         'domReady':'../../deps/domReady/domReady'
-                        //'globals': 'empty:'
                     },
                     exclude:[],
                     inlineText:true,
@@ -79,7 +74,10 @@ module.exports = function (grunt) {
             // needed for single file build
             single:{
                 files:[
-                    {expand:true, cwd:'src', src:['**', ['!js/main.js', '!less/**']], dest:'/Users/christopherfricke/Sites/The50Percent/'}
+                    {expand:true,
+                        cwd:'src',
+                        src:['**', ['!js/main.js', '!less/**']],
+                        dest:'/Users/christopherfricke/Sites/The50Percent/'}
                 ]
             }
         }

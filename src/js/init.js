@@ -8,10 +8,11 @@
 requirejs.config({
     "baseUrl": "js/lib",
     "paths": {
-        "app": "../app",
         "jquery": "jquery-2.0.3.min",
+        "infuser": "External-Template-Engine/ext/infuser",
         "knockout":"knockout-2.3.0",
-        "leaflet": "leaflet/leaflet"
+        "leaflet": "leaflet/leaflet",
+        "app": "../app"
     },
     shim: {
         "leaflet": {exports: "L"}
