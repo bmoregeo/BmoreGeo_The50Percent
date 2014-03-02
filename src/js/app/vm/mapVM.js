@@ -11,19 +11,24 @@ define(['knockout', 'app/config', 'jquery', 'app/model/map'], function(ko, confi
         var self = this;
 
         self._basemap = ko.observable();
-        self._operationalLayers = ko.observableArray();
         self._center = ko.observable();
         self._zoom = ko.observable();
+        self.operationalLayers = ko.observableArray();
+        self.operationalLayers.subscribe(function(changes){
+            console.log(changes);
+        }, null, "arrayChange");
+
+
 
         self.basemap = ko.computed({
             read: function () {
-                return self._basemap;
+                return self._basemap();
             },
             write: function (value) {
-                self._basemap = value;
+                self._basemap(value);
                 map.addLayer(value);
             },
-            owner: self
+            owner: this
         });
 
         self.center = ko.computed({
@@ -48,41 +53,28 @@ define(['knockout', 'app/config', 'jquery', 'app/model/map'], function(ko, confi
             owner: self
         });
 
-        self.operationalLayers = ko.computed({
-            read: function () {
-                return self._operationalLayers;
-            },
-            write: function (value) {
-                self._operationalLayers = value;
-                /*map.mapInstance.setZoom(zoom);*/
-            },
-            owner: self
-            /* TODO: Figure out way to extend this computed observable with an append and delete item function */
-        });
-
-
-
         self.init = function () {
             map.mapInstance.setView(config.map.initialCenter,
                                     config.map.initialZoom);
-
+            /* Add Basemap Layer from Config */
             self.basemap(config.map.basemap);
-            /*
-              Add Operational Layers
-            */
-            operationalLayers = config.map.operationalLayers;
-            for (var i = 0; i < operationalLayers.length; i++){
-                var operationalLayer = operationalLayers[i];
 
+            /* Add Operational Layers from Config*/
+            for (var i = 0; i < config.map.operationalLayers.length; i++){
+                var operationalLayer = config.map.operationalLayers[i];
                 $.ajax({
-                    url: operationalLayers[i].url,
+                    url: config.map.operationalLayers[i].url,
                     success: function (data){
                         operationalLayer.data = data;
-                        map.addLayer(operationalLayer);
+                        self.operationalLayers.push(operationalLayer);
                     },
-                    fail: function (jqXHR, textStatus, errorThrown){console.log(textStatus);}
+                    fail: function (jqXHR, textStatus, errorThrown){
+                        console.log(textStatus);
+                    }
                 });
             }
+
+            self.operationalLayers.pop();
         }
     };
     return mapVM;
