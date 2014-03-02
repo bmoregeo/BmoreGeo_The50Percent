@@ -12,7 +12,7 @@ define([], function() {
         map: {
             initialCenter:[39, -97],     // Y,X
             initialZoom: 4,           // 1 (small) - 18 (big),
-            baseMap:{
+            basemap:{
                 data: "https://a.tiles.mapbox.com/v3/mapbox.world-print/{z}/{x}/{y}.png",
                 settings: {
                     attribution: "Map data © OpenStreetMap contributors",
