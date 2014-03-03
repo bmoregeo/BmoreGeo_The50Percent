@@ -40,39 +40,18 @@ define(['knockout', 'app/config', 'jquery', 'app/model/map'], function(ko, confi
         }, null, "arrayChange");
 
 
-
-        self.basemap = ko.computed({
-            read: function () {
-                return self._basemap();
-            },
-            write: function (value) {
-                self._basemap(self.createLayer(value));
-                map.mapInstance.addLayer(self._basemap());
-            },
-            owner: this
+        self.basemap = ko.observable();
+        self.basemap.subscribe(function(changes) {
+            map.mapInstance.addLayer(changes[0].value);
         });
 
-        self.center = ko.computed({
-            read: function () {
-                return self._center;
-            },
-            write: function (value) {
-                self._center = value;
-                map.mapInstance.panTo(value);
-            },
-            owner: self
-        });
+        self.center = ko.observable();
+        self.center.subscribe(function(changes){map.mapInstance.panTo(changes[0].value)});
 
-        self.zoom = ko.computed({
-            read: function () {
-                return self._zoom;
-            },
-            write: function (value) {
-                self._zoom = value;
-                map.mapInstance.setZoom(zoom);
-            },
-            owner: self
-        });
+        self.zoom = ko.observable();
+        self.zoom.subscribe(function(changes){map.mapInstance.setZoom(changes[0].value)});
+
+
 
         self.init = function () {
             map.mapInstance.setView(config.map.initialCenter,
