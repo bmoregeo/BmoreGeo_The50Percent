@@ -29,19 +29,6 @@
                 // Create a leaflet map on mapview object!
                 this.mapInstance = L.map('mapview');
 
-            },
-            addLayer: function(layerInfo) {
-                // Create a layer of open streetmap tile layer
-                var layerFunction = function(type){
-                     return type === 'tile' ?  L.TileLayer :
-                         type === 'wms' ? L.TileLayer.WMS :
-                         type === 'canvas' ? L.TileLayer.Canvas :
-                             L.geoJson;
-
-                }(layerInfo.type);
-
-                var mapLayer = new layerFunction(layerInfo.data, layerInfo.settings);
-                this.mapInstance.addLayer(mapLayer);
             }
         };
 
