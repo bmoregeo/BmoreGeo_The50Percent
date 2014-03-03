@@ -10,10 +10,6 @@ define(['knockout', 'app/config', 'jquery', 'app/model/map'], function(ko, confi
     var mapVM = new function () {
         var self = this;
 
-        self._basemap = ko.observable();
-        self._center = ko.observable();
-        self._zoom = ko.observable();
-
         /** * Create a leaflet layer
          @param {Object} layerInfo - config settings including data, layer settings, and type
          to generate a leaflet layer
