@@ -10,7 +10,7 @@ requirejs.config({
     "paths": {
         "jquery": "jquery-2.0.3.min",
         "infuser": "External-Template-Engine/ext/infuser",
-        "knockout":"knockout-2.3.0",
+        "knockout":"knockout-3.0.0",
         "leaflet": "leaflet/leaflet",
         "app": "../app"
     },

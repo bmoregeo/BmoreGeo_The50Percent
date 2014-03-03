@@ -14,7 +14,28 @@ define(['knockout', 'app/config', 'jquery', 'app/model/map'], function(ko, confi
         self._center = ko.observable();
         self._zoom = ko.observable();
         self.operationalLayers = ko.observableArray();
+
+        self.createLayer = function(layerInfo){
+            // Create a layer of open streetmap tile layer
+            var layerFunction = function(type){
+                return type === 'tile' ?  L.TileLayer :
+                    type === 'wms' ? L.TileLayer.WMS :
+                    type === 'canvas' ? L.TileLayer.Canvas :
+                    L.geoJson;
+            }(layerInfo.type);
+
+            return new layerFunction(layerInfo.data, layerInfo.settings);
+
+        };
+
         self.operationalLayers.subscribe(function(changes){
+            for (var i = 0; i < changes.length; i++){
+                if (changes[i].status === 'added'){
+                    map.mapInstance.addLayer(changes[i].value);
+                } else if (changes[i].status === 'deleted'){
+                    map.mapInstance.removeLayer(changes[i].value);
+                }
+            }
             console.log(changes);
         }, null, "arrayChange");
 
@@ -25,8 +46,8 @@ define(['knockout', 'app/config', 'jquery', 'app/model/map'], function(ko, confi
                 return self._basemap();
             },
             write: function (value) {
-                self._basemap(value);
-                map.addLayer(value);
+                self._basemap(self.createLayer(value));
+                map.mapInstance.addLayer(self._basemap());
             },
             owner: this
         });
@@ -66,15 +87,14 @@ define(['knockout', 'app/config', 'jquery', 'app/model/map'], function(ko, confi
                     url: config.map.operationalLayers[i].url,
                     success: function (data){
                         operationalLayer.data = data;
-                        self.operationalLayers.push(operationalLayer);
+                        var mapLayer = self.createLayer(operationalLayer);
+                        self.operationalLayers.push(mapLayer);
                     },
                     fail: function (jqXHR, textStatus, errorThrown){
                         console.log(textStatus);
                     }
                 });
             }
-
-            self.operationalLayers.pop();
         }
     };
     return mapVM;
